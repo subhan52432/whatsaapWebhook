@@ -48,7 +48,7 @@ app.post('/webhook', (req, res) => {
             console.log("body param "+ msg_body)
             axios({
                 method: "POST",
-                url:"https://graph.facebook.com/v15.0/"+phone_no_id+"/messages?access_token="+token,
+                url:"https://graph.facebook.com/v15.0/"+phone_no_id+"/messages",
                 data:{
                     messaging_product:"whatsaap",
                     to:from,
@@ -57,11 +57,12 @@ app.post('/webhook', (req, res) => {
                     }
                 },
                 headers:{
+                    'Authorization': `Bearer ${token}`,
                     "Content-Type": "application/json"
                 }
             })
             .then(function(response){
-                console.log("This is response "+response);
+                console.log(response);
             })
             .catch(function (error) {
                 console.log("This is error "+error);
