@@ -61,10 +61,10 @@ app.post('/webhook', (req, res) => {
                 }
             })
             .then(function(response){
-                console.log(response);
+                console.log("This is response "+response);
             })
             .catch(function (error) {
-                console.log(error);
+                console.log("This is error "+error);
             })
             res.sendStatus(200)
         } else{
