@@ -8,7 +8,7 @@ const app = express().use(body_parser.json())
 const token = process.env.TOKEN
 const myToken = process.env.MYTOKEN
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT, () => { 
     console.log('webhook is listening')
 })
 
@@ -26,7 +26,7 @@ app.get('/webhook', (req, res) => {
             res.status(403)
         }
     }
-})
+})  
 
 app.post('/webhook', (req, res) => {
     let body_param = req.body
@@ -59,6 +59,12 @@ app.post('/webhook', (req, res) => {
                 headers:{
                     "Content-Type": "application/json"
                 }
+            })
+            .then(function(response){
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
             })
             res.sendStatus(200)
         } else{
