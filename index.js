@@ -1,6 +1,6 @@
 const express = require('express')
 const body_parser = require('body-parser')
-const axios = require('axios').default
+const axios = require('axios')
 require('dotenv').config()
 
 const app = express().use(body_parser.json())
