@@ -55,6 +55,9 @@ app.post('/webhook', (req, res) => {
                     text:{
                         body:"Hi I am Subhan, Your msg is "+msg_body 
                     }
+                },
+                headers: {
+                    "Content-type": "application/json"
                 }
             })
             .then(function(response){
