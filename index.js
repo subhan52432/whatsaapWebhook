@@ -46,44 +46,46 @@ app.post('/webhook', (req, res) => {
             console.log("phone no "+ phone_no_id)
             console.log("from "+ from)
             console.log("body param "+ msg_body)
-//             axios({
-//                 method: "POST",
-//                 url:"https://graph.facebook.com/v15.0/"+phone_no_id+"/messages?access_token="+token,
-//                 data:{
-//                     messaging_product:"whatsaap",
-//                     to:from,
-//                     text:{
-//                         body:"Hi I am Subhan, Your msg is "+msg_body 
+            axios({
+                method: "post",
+                url:"https://graph.facebook.com/v15.0/"+phone_no_id+"/messages",
+                headers: {
+                    "Content-type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                data:{
+                    messaging_product:"whatsaap",
+                    to:from,
+                    text:{
+                        body:"Hi I am Subhan, Your msg is "+msg_body 
+                    }
+                }
+                
+            })
+            .then(function(response){
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log("This is error "+error);
+            })
+            
+//             axios.post(
+//                 "https://graph.facebook.com/v15.0/" + phone_no_id + "/messages",
+//                 {
+//                     messaging_product: "whatsaap",
+//                     to: from,
+//                     text: {
+//                         body: "Hi I am Subhan, Your msg is " + msg_body
 //                     }
 //                 },
-//                 headers: {
-//                     "Content-type": "application/json"
-//                 }
-//             })
-//             .then(function(response){
-//                 console.log(response);
-//             })
-//             .catch(function (error) {
-//                 console.log("This is error "+error);
-//             })
-            
-            axios.post(
-                "https://graph.facebook.com/v15.0/" + phone_no_id + "/messages",
-                {
-                    messaging_product: "whatsaap",
-                    to: from,
-                    text: {
-                        body: "Hi I am Subhan, Your msg is " + msg_body
-                    }
-                },
-                {
-                    headers: { "Content-Type": "application/json" },
-                    params: { access_token: token }, //Add userID as a param 
-                })
-                .then(response => console.log("repsonse", response.status))
-                .catch(function (error) {
-                    console.log("This is error " + error);
-                })
+//                 {
+//                     headers: { "Content-Type": "application/json" },
+//                     params: { access_token: token }, //Add userID as a param 
+//                 })
+//                 .then(response => console.log("repsonse", response.status))
+//                 .catch(function (error) {
+//                     console.log("This is error " + error);
+//                 })
             
             res.sendStatus(200)
         } else{
