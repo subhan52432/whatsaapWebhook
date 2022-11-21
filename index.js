@@ -50,8 +50,9 @@ app.post('/webhook', (req, res) => {
                 method: "post",
                 url:"https://graph.facebook.com/v15.0/"+phone_no_id+"/messages",
                 headers: {
-                    "Content-type": "application/json",
-                    "Authorization": `Bearer ${token}`
+                    "Authorization": `Bearer ${token}`,
+                    "Content-type": "application/json"
+                    
                 },
                 data:{
                     messaging_product:"whatsaap",
